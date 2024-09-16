@@ -8,10 +8,18 @@ app.get('/', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.listen(port, () => {
-  console.log(`Server running or port ${port}`);
+app.get('/delay', (req, res) => {
+  setTimeout(() => {
+    res.send('Este mensaje fue retrasado por 3 segungos');
+  }, 3000);
 });
 
-
 module.exports = app;
+
+
+if (require.main === module) {
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
+}
 
